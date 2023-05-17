@@ -7,7 +7,6 @@ lsp.ensure_installed({
 	'eslint',
   'cssmodules_ls',
   'cssls',
-  'lua-language-server',
 })
 
 lsp.nvim_workspace()
