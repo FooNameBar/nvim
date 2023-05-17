@@ -10,6 +10,8 @@ lsp.ensure_installed({
   'lua-language-server',
 })
 
+lsp.nvim_workspace()
+
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -41,11 +43,6 @@ lsp.set_preferences({
 lsp.on_attach(function(client, bufnr)
 	local opts = {buffer = bufnr, remap = false }
 
-	if client.name == "eslint" then
-		vim.cmd.LspStop('eslint')
-		return
-	end
-
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 	vim.keymap.set("n", "H", vim.lsp.buf.hover, opts)
 	vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
@@ -61,3 +58,6 @@ end)
 
 lsp.setup()
 
+vim.diagnostic.config({
+	virtual_text = true
+})
