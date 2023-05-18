@@ -33,7 +33,10 @@ lsp.nvim_workspace()
 
 
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+require('luasnip.loaders.from_vscode').lazy_load()
 
+
+local luasnip = require('luasnip')
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -41,14 +44,26 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
   ['<CR>'] = cmp.mapping.confirm({ select = true }),
   ['<C-Space>'] = cmp.mapping.complete(),
+  ['<C-f>'] = cmp.mapping(function(fallback)
+    if luasnip.jumpable(1) then
+      luasnip.jump(1)
+    else
+      fallback()
+    end
+  end, { 'i', 's' }),
+  ['<C-b>'] = cmp.mapping(function(fallback)
+    if luasnip.jumpable(-1) then
+      luasnip.jump(-1)
+    else
+      fallback()
+    end
+  end, { 'i', 's' }),
 })
 
 -- disable completion with tab
 -- this helps with copilot
 cmp_mappings['<Tab'] = nil
 cmp_mappings['<S-Tab>'] = nil
-
-require('luasnip.loaders.from_vscode').lazy_load()
 
 cmp.setup({
   mapping = cmp_mappings,
