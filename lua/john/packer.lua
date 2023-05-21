@@ -14,11 +14,11 @@ return require('packer').startup(function(use)
   }
   use('folke/tokyonight.nvim')
   use({
-  	'nvim-treesitter/nvim-treesitter',
-  	run = function()
-  		local ts_update = require('nvim-treesitter.install').update({with_sync = true})
-  		ts_update()
-  	end
+    'nvim-treesitter/nvim-treesitter',
+    run = function()
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end
   })
   use('nvim-treesitter/playground')
   use('theprimeagen/harpoon')
@@ -29,7 +29,7 @@ return require('packer').startup(function(use)
   use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
   use {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
   use({
     'kylechui/nvim-surround',

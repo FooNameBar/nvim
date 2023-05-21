@@ -25,8 +25,6 @@ lsp.preset({
 lsp.ensure_installed({
   'tsserver',
   'eslint',
-  'cssmodules_ls',
-  'cssls',
 })
 
 lsp.nvim_workspace()
@@ -80,10 +78,10 @@ cmp.setup({
 })
 
 lsp.set_sign_icons({
-  error = 'E',
-  warn = 'W',
-  hint = 'H',
-  info = 'I',
+  error = '',
+  warn = '',
+  hint = '',
+  info = ''
 })
 
 lsp.on_attach(function(client, bufnr)

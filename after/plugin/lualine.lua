@@ -1,17 +1,43 @@
 local lualine = require('lualine')
 
+local diagSection = {
+  'diagnostics',
+  symbols = { error = ' ', warn = ' ', hint = ' ', info = ' ' },
+}
+
+local diffSection = {
+  'diff',
+  -- Is it me or the symbol for modified us really weird
+  symbols = { added = ' ', modified = '󰝤 ', removed = ' ' },
+  diff_color = {
+    added = { fg = '#98BE65' },
+    modified = { fg = '#FF8800' },
+    removed = { fg = '#EC5f67' },
+  },
+}
+
+local fileformatSection = {
+  'fileformat',
+  symbols = {
+    unix = ' unix',       -- e712
+    dos = ' dos',        -- e70f
+    mac = ' mac',        -- e711
+  },
+  color = { gui = 'bold' },
+}
+
 lualine.setup {
   options = {
     icons_enabled = true,
-    theme = 'auto',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    theme = 'tokyonight',
+    component_separators = { left = '', right = '' },
+    section_separators = { left = '', right = '' },
     disabled_filetypes = {
       statusline = {},
       winbar = {},
     },
     ignore_focus = {},
-    always_divide_middle = true,
+    -- always_divide_middle = true,
     globalstatus = false,
     refresh = {
       statusline = 1000,
@@ -20,18 +46,18 @@ lualine.setup {
     }
   },
   sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
+    lualine_a = { 'mode' },
+    lualine_b = { 'progress', 'location' },
+    lualine_c = { diagSection, 'filename' },
+    lualine_x = { 'encoding', fileformatSection, 'filetype' },
+    lualine_y = { diffSection },
+    lualine_z = { 'branch'  }
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
+    lualine_c = { 'filename' },
+    lualine_x = { 'location' },
     lualine_y = {},
     lualine_z = {}
   },
