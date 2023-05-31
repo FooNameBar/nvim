@@ -26,7 +26,6 @@ return require('packer').startup(function(use)
   use('tpope/vim-fugitive')
   use('ThePrimeagen/vim-be-good')
   use { "akinsho/toggleterm.nvim", tag = '*' }
-  use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
