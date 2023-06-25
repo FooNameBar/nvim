@@ -10,7 +10,9 @@ vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 
-vim.opt.wrap = false
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.whichwrap = '<,>,h,l'
 
 vim.opt.swapfile = false
 vim.opt.backup = false
