@@ -13,6 +13,7 @@ return require('packer').startup(function(use)
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
   use('folke/tokyonight.nvim')
+
   use({
     'nvim-treesitter/nvim-treesitter',
     run = function()
@@ -20,16 +21,24 @@ return require('packer').startup(function(use)
       ts_update()
     end
   })
+
   use('nvim-treesitter/playground')
+
   use('theprimeagen/harpoon')
+
   use('mbbill/undotree')
+
   use('tpope/vim-fugitive')
+
   use('ThePrimeagen/vim-be-good')
+
   use { "akinsho/toggleterm.nvim", tag = '*' }
+
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
+
   use({
     'kylechui/nvim-surround',
     tag = "*",
@@ -59,10 +68,18 @@ return require('packer').startup(function(use)
       { 'rafamadriz/friendly-snippets' },
     }
   }
+
   use {
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup()
     end
+  }
+
+  use {
+    'laytan/tailwind-sorter.nvim',
+    requires = { 'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim' },
+    config = function() require('tailwind-sorter').setup() end,
+    run = 'cd formatter && npm i && npm run build',
   }
 end)
