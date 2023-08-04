@@ -82,4 +82,6 @@ return require('packer').startup(function(use)
     config = function() require('tailwind-sorter').setup() end,
     run = 'cd formatter && npm i && npm run build',
   }
+
+  use {'nvim-treesitter/nvim-treesitter-context' }
 end)
