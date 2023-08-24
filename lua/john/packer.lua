@@ -86,6 +86,4 @@ return require('packer').startup(function(use)
   use('nvim-treesitter/nvim-treesitter-context')
 
   use('elentok/format-on-save.nvim')
-
-  use('barrett-ruth/live-server.nvim')
 end)
