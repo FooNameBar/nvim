@@ -6,8 +6,8 @@ format_on_save.setup({
     "/node_modules/",
   },
   formatter_by_ft = {
-    css = formatters.lsp,
-    html = formatters.lsp,
+    css = formatters.prettierd,
+    html = formatters.prettierd,
     java = formatters.lsp,
     json = formatters.lsp,
     lua = formatters.lsp,
@@ -21,16 +21,7 @@ format_on_save.setup({
     typescript = formatters.prettierd,
     typescriptreact = formatters.prettierd,
     yaml = formatters.lsp,
-
-    -- Add conditional formatter that only runs if a certain file exists
-    -- in one of the parent directories.
-    javascript = {
-      formatters.if_file_exists(".eslintrc.*", formatters.eslint_d_fix),
-      formatters.if_file_exists(
-        { ".prettierrc", ".prettierrc.*", "prettier.config.*" },
-        formatters.prettierd
-      )
-    },
+    javascript = formatters.prettierd,
   },
 
   -- Optional: fallback formatter to use when no formatters match the current filetype
