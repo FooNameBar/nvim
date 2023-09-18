@@ -13,6 +13,7 @@ format_on_save.setup({
     lua = formatters.lsp,
     markdown = formatters.prettierd,
     openscad = formatters.lsp,
+    python = formatters.prettierd,
     rust = formatters.lsp,
     scad = formatters.lsp,
     scss = formatters.lsp,
