@@ -89,9 +89,10 @@ return require('packer').startup(function(use)
 
   use {
     "nvim-neorg/neorg",
-    tag = "*",
     ft = "norg",
-    after = { "nvim-treesitter", "telescope.nvim" },
+    cmd = "Neorg",
+    run = ":Neorg sync-parsers",
+    tag = "*",
     config = function()
       require('neorg').setup {
         load = {
@@ -108,7 +109,6 @@ return require('packer').startup(function(use)
         },
       }
     end,
-    run = ":Neorg sync-parsers",
     requires = "nvim-lua/plenary.nvim",
   }
 end)
