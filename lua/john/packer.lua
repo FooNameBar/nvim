@@ -86,4 +86,29 @@ return require('packer').startup(function(use)
   use('nvim-treesitter/nvim-treesitter-context')
 
   use('elentok/format-on-save.nvim')
+
+  use {
+    "nvim-neorg/neorg",
+    tag = "*",
+    ft = "norg",
+    after = { "nvim-treesitter", "telescope.nvim" },
+    config = function()
+      require('neorg').setup {
+        load = {
+          ["core.defaults"] = {},
+          ["core.concealer"] = {},
+          ["core.dirman"] = {
+            config = {
+              workspaces = {
+                projects = "~/notes/projects",
+                personal = "~/notes/personal",
+              },
+            },
+          },
+        },
+      }
+    end,
+    run = ":Neorg sync-parsers",
+    requires = "nvim-lua/plenary.nvim",
+  }
 end)
