@@ -101,9 +101,11 @@ return require('packer').startup(function(use)
           ["core.dirman"] = {
             config = {
               workspaces = {
+                notes = "~/notes/",
                 projects = "~/notes/projects",
                 personal = "~/notes/personal",
               },
+              default_workspace = "notes",
             },
           },
         },
