@@ -12,6 +12,7 @@ format_on_save.setup({
     json = formatters.lsp,
     lua = formatters.lsp,
     markdown = formatters.prettierd,
+    norg = formatters.remove_trailing_whitespace,
     openscad = formatters.lsp,
     python = formatters.prettierd,
     rust = formatters.lsp,

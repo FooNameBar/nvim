@@ -25,6 +25,8 @@ lsp.preset({
 lsp.ensure_installed({
   'tsserver',
   'eslint',
+  'clangd',
+  'gopls',
 })
 
 lsp.nvim_workspace()
