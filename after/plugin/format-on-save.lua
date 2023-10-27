@@ -8,6 +8,7 @@ format_on_save.setup({
   formatter_by_ft = {
     css = formatters.prettierd,
     html = formatters.prettierd,
+    go = formatters.lsp,
     java = formatters.lsp,
     json = formatters.lsp,
     lua = formatters.lsp,
