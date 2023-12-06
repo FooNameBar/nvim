@@ -13,8 +13,6 @@ return require('packer').startup(function(use)
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
-    use('junegunn/fzf')
-
     use('folke/tokyonight.nvim')
 
     use({

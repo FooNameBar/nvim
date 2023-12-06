@@ -20,7 +20,7 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set("n", "<leader>pc", [["+p]])
 
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+vim.keymap.set("v", "<leader>d", [["+d]])
 
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -37,12 +37,5 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>")
-vim.keymap.set("n", "<leader>th", "<cmd>tabfirst<CR>")
-vim.keymap.set("n", "<leader>tj", "<cmd>tabnext<CR>")
-vim.keymap.set("n", "<leader>tk", "<cmd>tabprev<CR>")
-vim.keymap.set("n", "<leader>tl", "<cmd>tablast<CR>")
-vim.keymap.set("n", "<leader>td", "<cmd>tabclose<CR>")
-vim.keymap.set("n", "<leader>to", "<cmd>tabonly<CR>")
-
 vim.keymap.set("n", "<leader>we", "<cmd>w | :Ex<CR>", { silent = true })
+vim.keymap.set("n", "<leader>wq", "<cmd>w | :q<CR>", { silent = true })
