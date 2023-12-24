@@ -12,7 +12,7 @@ vim.opt.smartindent = true
 
 vim.opt.wrap = false
 vim.opt.linebreak = true
-vim.opt.whichwrap = '<,>,h,l'
+-- vim.opt.whichwrap = '<,>,h,l'
 
 vim.opt.swapfile = false
 vim.opt.backup = false

@@ -43,11 +43,21 @@ require('nvim-treesitter.configs').setup {
                 ['[F'] = '@function.outer',
                 ['[C'] = '@class.outer'
             },
+
+            -- Below will go to either the start or the end, whichever is closer.
+            -- Use if you want more granular movements
+            goto_next = {
+                ["]i"] = "@conditional.outer",
+            },
+            goto_previous = {
+                ["[i"] = "@conditional.outer",
+
+            },
         },
     },
 }
 
-local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
+local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
 
 -- Repeat movement with ; and ,
 -- ensure ; goes forward and , goes backward regardless of the last direction
