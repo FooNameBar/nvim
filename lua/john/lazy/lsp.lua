@@ -1,4 +1,71 @@
--- :h lsp-zero for help
+--[[
+-- note: diagnostics are not exclusive to lsp servers
+-- so these can be global keybindings
+vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    desc = 'LSP actions',
+    callback = function(event)
+        local opts = { buffer = event.bufnr }
+
+        -- these will be buffer-local keybindings
+        -- because they will only work if a language server is active
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+        vim.keymap.set("n", "go", vim.lsp.buf.type_definition, opts)
+        vim.keymap.set("n", "H", vim.lsp.buf.hover, opts)
+        vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
+        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+        vim.keymap.set("n", "<leader>lr", refs, opts)
+        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+        vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+    end
+})
+
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+local default_setup = function(server)
+    require('lspconfig')[server].setup({
+        capabilities = lsp_capabilites,
+    })
+end
+
+require('mason').setup({})
+require('mason-lspconfig').setup({
+    ensure_installed = {
+        'tsserver',
+        'eslint',
+        'clangd',
+        'gopls',
+    },
+    handlers = {
+        -- Customize language servers here
+        default_setup,
+    },
+})
+
+cmp.setup({
+    sources = {
+        {name = 'nvim_lsp'},
+    },
+    mapping = cmp.mapping.preset.insert({
+        -- Enter key confirms completion item
+        ['<CR>'] = cmp.mapping.confirm({select = false}),
+
+        -- Ctrl + space tirggers completion menu
+        ['<C-Space>'] = cmp.mapping.complete(),
+    }),
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end,
+    },
+})
+]]--
+
+--[[
+:h lsp-zero for help
 local lsp = require('lsp-zero')
 
 lsp.preset({
@@ -23,10 +90,6 @@ lsp.preset({
 })
 
 lsp.ensure_installed({
-    'tsserver',
-    'eslint',
-    'clangd',
-    'gopls',
 })
 
 lsp.nvim_workspace()
@@ -106,25 +169,28 @@ local function refs()
     })
 end
 
-lsp.on_attach(function(client, bufnr)
-    local opts = { buffer = bufnr, remap = false }
-
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-    vim.keymap.set("n", "go", vim.lsp.buf.type_definition, opts)
-    vim.keymap.set("n", "H", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
-    vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-    vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-    vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
-    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-    vim.keymap.set("n", "<leader>lr", refs, opts)
-    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-    vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-end)
-
 lsp.setup()
 
 vim.diagnostic.config({
     virtual_text = true
 })
+
+   return {
+            -- LSP Support
+            "neovim/nvim-lspconfig",
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+
+            -- Autocompletion
+            "hrsh7th/nvim-cmp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "saadparwaiz1/cmp_luasnip",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-nvim-lua",
+
+            -- Snippets
+            "L3MON4D3/LuaSnip",
+            "rafamadriz/friendly-snippets",
+}
+]]--

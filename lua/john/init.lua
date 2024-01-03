@@ -1,5 +1,6 @@
 require("john.remap")
 require("john.set")
+require("john.lazy_init")
 
 local augroup = vim.api.nvim_create_augroup
 local ThePrimeagenGroup = augroup('ThePrimeagen', {})
