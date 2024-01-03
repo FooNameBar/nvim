@@ -1,3 +1,4 @@
+return {}
 --[[
 -- note: diagnostics are not exclusive to lsp servers
 -- so these can be global keybindings
