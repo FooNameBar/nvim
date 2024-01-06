@@ -10,9 +10,7 @@ return {
         "kylechui/nvim-surround",
         version = "*",
         event = "VeryLazy",
-        config = function()
-            require("nvim-surround").setup()
-        end
+        opts = {},
     },
 
     {
@@ -21,7 +19,7 @@ return {
         dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim' },
         build = 'cd formatter && npm i && npm run build',
         config = true,
-    }
+    },
 
     --[[
     {

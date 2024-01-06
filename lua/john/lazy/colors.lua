@@ -17,9 +17,9 @@ return {
         terminal_colors = true,
         styles = {
             comments = { italic = false },
-            floats = { italic = false },
-            sidebars = "dark",
             floats = "dark",
+            sidebars = "dark",
         },
+        dim_inactive = true,
     },
 }
