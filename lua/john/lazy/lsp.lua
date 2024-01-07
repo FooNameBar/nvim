@@ -8,10 +8,10 @@ return {
 
             -- Autocompletion
             "hrsh7th/nvim-cmp",
+            "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
             "saadparwaiz1/cmp_luasnip",
-            "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-nvim-lua",
 
             -- Snippets
@@ -55,7 +55,8 @@ return {
                     -- because they will only work if a language server is active
                     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
                     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-                    vim.keymap.set("n", "go", vim.lsp.buf.type_definition, opts)
+                    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
+                    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
                     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
                     vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
                     vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
@@ -186,35 +187,13 @@ return {
                 Hint = '',
                 Info = ''
             }
+
             for type, icon in pairs(signs) do
                 local hl = "DiagnosticSign" .. type
-                vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+                vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
             end
 
             require("fidget").setup({})
         end,
-
     },
 }
---[[
-lsp.preset({
-    name = 'recommended',
-    float_border = 'rounded',
-    call_servers = 'local',
-    configure_diagnostics = true,
-    setup_servers_on_start = true,
-    set_lsp_keymaps = {
-        preserve_mappings = false,
-        omit = {},
-    },
-    manage_nvim_cmp = {
-        set_sources = 'recommended',
-        set_basic_mappings = true,
-        set_extra_mappings = false,
-        use_luasnip = true,
-        set_format = true,
-        documentation_window = true,
-    },
-    suggest_lsp_servers = false,
-})
-]]--
