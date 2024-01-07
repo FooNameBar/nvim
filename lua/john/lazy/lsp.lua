@@ -76,13 +76,29 @@ return {
                                 vim.fn.setqflist({}, " ", items)
                                 vim.cmd.copen()
                                 vim.api.nvim_win_set_cursor(0, { qf_lnum, 0 })
-                                vim.api.nvim_set_current_win(win)
+                                vim.apil.nvim_set_current_win(win)
                             end,
                         })
                     end, opts)
                 end
             })
 
+            -- Border for hover and signature help
+            local border = {
+                {"╭", "FloatBorder"},
+                {"─", "FloatBorder"},
+                {"╮", "FloatBorder"},
+                {"│", "FloatBorder"},
+                {"╯", "FloatBorder"},
+                {"─", "FloatBorder"},
+                {"╰", "FloatBorder"},
+                {"│", "FloatBorder"},
+            }
+
+            vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = border})
+            vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = border })
+
+            -- Default Handler setup for Lsps
             local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
             local default_setup = function(server)
                 require('lspconfig')[server].setup({
