@@ -59,28 +59,10 @@ return {
                     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
                     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
                     vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
-                    vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
+                    vim.keymap.set("n", "<leader>ws", "<cmd>Telescope lsp_document_symbols<cr>", opts)
                     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
                     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-                    vim.keymap.set("n", "<leader>lr", function()
-                        local win = vim.api.nvim_get_current_win()
-                        local win_lnum = vim.api.nvim_win_get_cursor(win)[1]
-                        vim.lsp.buf.references(nil, {
-                            on_list = function(items, title, context)
-                                local qf_lnum = 0
-                                for i, value in pairs(items['items']) do
-                                    if win_lnum == value['lnum'] then
-                                        qf_lnum = i
-                                        items['idx'] = i
-                                    end
-                                end
-                                vim.fn.setqflist({}, " ", items)
-                                vim.cmd.copen()
-                                vim.api.nvim_win_set_cursor(0, { qf_lnum, 0 })
-                                vim.apil.nvim_set_current_win(win)
-                            end,
-                        })
-                    end, opts)
+                    vim.keymap.set("n", "<leader>lr", "<cmd>Telescope lsp_references<cr>", opts)
                 end
             })
 
