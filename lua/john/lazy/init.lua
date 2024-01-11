@@ -20,45 +20,4 @@ return {
         build = 'cd formatter && npm i && npm run build',
         config = true,
     },
-
-    --[[
-    {
-        "nvim-neorg/neorg",
-        ft = "norg",
-        cmd = "Neorg",
-        after = { "nvim-treesitter", "telescope.nvim" },
-        run = ":Neorg sync-parsers",
-        tag = "*",
-        config = function()
-            require('neorg').setup {
-                load = {
-                    ["core.defaults"] = {},
-                    ["core.concealer"] = {
-                        config = {
-                            folds = false,
-                        }
-                    },
-                    ["core.dirman"] = {
-                        config = {
-                            workspaces = {
-                                notes = "~/notes/",
-                                projects = "~/notes/projects",
-                                personal = "~/notes/personal",
-                                examples = "~/notes/examples",
-                            },
-                            default_workspace = "notes",
-                        },
-                    },
-                    ["core.qol.toc"] = {
-                        config = {
-                            close_after_use = true
-                        },
-                    },
-                    ["core.summary"] = {},
-                },
-            }
-        end,
-        requires = "nvim-lua/plenary.nvim",
-    }
-    ]]--
 }
