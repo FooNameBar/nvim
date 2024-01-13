@@ -23,7 +23,6 @@ opt.isfname:append("@-@")
 opt.ignorecase = true      -- Ignore case
 opt.inccommand = "nosplit" -- preview incremental substitute
 opt.laststatus = 3         -- global statusline
-opt.list = true            -- Show some invisible characters (tabs...
 opt.number = true          -- Show line numbers
 opt.pumblend = 10          -- Popup blend
 opt.pumheight = 10         -- Maximum number of entries in a popup
@@ -46,7 +45,7 @@ opt.splitright = true -- Put new windows right of current
 opt.swapfile = false
 opt.tabstop = 4
 opt.termguicolors = true
-opt.timeoutlen = 500
+opt.timeoutlen = 750
 opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 opt.undofile = true
 opt.undolevels = 10000
