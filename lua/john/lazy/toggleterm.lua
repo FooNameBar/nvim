@@ -22,8 +22,8 @@ return {
         })
 
         local node = require('toggleterm.terminal').Terminal:new({ cmd = "node", hidden = true })
-        vim.keymap.set("n", "<leader>tn", function() node:toggle() end)
-        vim.keymap.set("v", "<C-p>",  "<cmd>lua require('toggleterm').send_lines_to_terminal('visual_selection', true, { args = vim.v.count })<cr>")
+        vim.keymap.set("n", "<leader>tn", function() node:toggle() end, { desc = "Toggleterm open node terminal"})
+        vim.keymap.set("v", "<C-p>",  "<cmd>lua require('toggleterm').send_lines_to_terminal('visual_selection', true, { args = vim.v.count })<cr>", { desc = "Send selection to terminal" })
 
         vim.api.nvim_create_autocmd('TermOpen', {
             desc = 'Terminal Keymaps',

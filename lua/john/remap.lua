@@ -29,10 +29,6 @@ map.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank into clipboard regist
 map.set("n", "<leader>Y", [["+Y]], { desc = "Yank line into clipboard register" })
 map.set({ "n", "v" }, "<leader>P", [["+p]], { desc = "Paste from clipboard" })
 
--- List Navigation
-map.set("n", "]]", "<cmd>cnext<CR>zz", { desc = "Move to next in list" })
-map.set("n", "[[", "<cmd>cprev<CR>zz", { desc = "Move to prev in list" })
-
 -- Lazy Keymap.sets
 -- Resize window using <ctrl> arrow keys
 map.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
