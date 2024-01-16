@@ -1,47 +1,37 @@
 vim.g.mapleader = " "
 local map = vim.keymap
 
--- Project View
-map.set("n", "<leader>pv", vim.cmd.Ex)
+-- Util remaps
+map.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Keymap for netrw-:Explore" })
+map.set("n", "J", "mzJ`z", { desc = "Concat line below but do not move cursor" })
+map.set("i", "<C-c>", "<Esc>", { desc = "Control C acts like Escape in Insert Mode" })
+map.set("n", "Q", "<nop>", { desc = "Disable Q" })
+map.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "Tmux Sessionizer" })
+map.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format with lsp" })
+map.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true,  desc = "Make current file executable" })
+map.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Search and replace word under cursor" })
+map.set("n", "<leader>we", "<cmd>w | :Ex<CR>", { silent = true }, { desc = "Write and move to netrw-:Explore" })
 
--- Concat line below but do not move cursor
-map.set("n", "J", "mzJ`z")
 
--- Maintain centered cursor on page down/up
-map.set("n", "<C-d>", "<C-d>zz")
-map.set("n", "<C-u>", "<C-u>zz")
+-- Center on down/up
+map.set("n", "<C-d>", "<C-d>zz", { desc = "Maintain centered cursor on page down" })
+map.set("n", "<C-u>", "<C-u>zz", { desc = "Maintain centered cursor on page up" })
 
 -- Center on next search item
-map.set("n", "n", "nzzzv")
-map.set("n", "N", "Nzzzv")
+map.set("n", "n", "nzzzv", { desc = "Center on next search item" })
+map.set("n", "N", "Nzzzv", { desc = "Center on prev search item" })
 
 -- greatest remap ever
--- delete a highlighted word into the void register and then paste over
--- preserving the paste register
-map.set("x", "<leader>p", [["_dP]])
+map.set("x", "<leader>p", [["_dP]], { desc = "Delete a highlighted word into the void register and then paste over" })
 
 -- next greatest remap ever : asbjornHaland
--- Yank into clipboard register
-map.set({ "n", "v" }, "<leader>y", [["+y]])
-map.set("n", "<leader>Y", [["+Y]]) -- Yank line into clipboard
-map.set({ "n", "v" }, "<leader>P", [["+p]]) -- Paste from clipboard
-map.set("v", "<leader>D", [["+d]])
+map.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank into clipboard register" })
+map.set("n", "<leader>Y", [["+Y]], { desc = "Yank line into clipboard register" })
+map.set({ "n", "v" }, "<leader>P", [["+p]], { desc = "Paste from clipboard" })
 
--- This is going to get me cancelled
-map.set("i", "<C-c>", "<Esc>")
-
-map.set("n", "Q", "<nop>")
-map.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-map.set("n", "<leader>f", vim.lsp.buf.format)
-
--- Move to next/prev list
-map.set("n", "]]", "<cmd>cnext<CR>zz")
-map.set("n", "[[", "<cmd>cprev<CR>zz")
-
-map.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-map.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-
-map.set("n", "<leader>we", "<cmd>w | :Ex<CR>", { silent = true })
+-- List Navigation
+map.set("n", "]]", "<cmd>cnext<CR>zz", { desc = "Move to next in list" })
+map.set("n", "[[", "<cmd>cprev<CR>zz", { desc = "Move to prev in list" })
 
 -- Lazy Keymap.sets
 -- Resize window using <ctrl> arrow keys

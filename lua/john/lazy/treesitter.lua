@@ -184,7 +184,7 @@ return {
         },
         config = function()
             vim.cmd('hi TreesitterContextBottom gui=underline guisp=Grey')
-            vim.keymap.set("n", "<leader>tc", "<cmd>TSContextToggle<cr>")
+            vim.keymap.set("n", "<leader>tc", "<cmd>TSContextToggle<cr>", { desc = "Treesitter Context Toggle" })
         end,
     },
 

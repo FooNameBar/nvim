@@ -7,12 +7,12 @@ return {
         -- so these can be global keybindings
         vim.keymap.set("n", "<leader>vd", function()
             require("trouble").toggle()
-        end)
+        end, { desc = "Trouble view diagnostics"})
         vim.keymap.set("n", "[d",function()
             require("trouble").next({ skip_groups = true, jump = true })
-        end)
+        end, { desc = "Trouble next item in diagnostics"})
         vim.keymap.set("n", "]d",function()
             require("trouble").previous({ skip_groups = true, jump = true })
-        end)
+        end, { desc = "Trouble prev item in diagnostics"})
     end,
 }
