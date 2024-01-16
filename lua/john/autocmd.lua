@@ -64,6 +64,8 @@ autocmd("FileType", {
   pattern = {
     "PlenaryTestPopup",
     "fugitive",
+    "undotree",
+    "diff",
     "help",
     "lspinfo",
     "man",
