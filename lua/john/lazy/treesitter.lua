@@ -184,16 +184,7 @@ return {
         },
         config = function()
             vim.cmd('hi TreesitterContextBottom gui=underline guisp=Grey')
-            vim.keymap.set("n", "<leader>tc", function()
-                local Util = require("lazyvim.util")
-                local tsc = require("treesitter-context")
-                tsc.toggle()
-                if Util.inject.get_upvalue(tsc.toggle, "enabled") then
-                    Util.info("Enabled Treesitter Context", { title = "Option" })
-                else
-                    Util.warn("Disabled Treesitter Context", { title = "Option" })
-                end
-            end)
+            vim.keymap.set("n", "<leader>tc", "<cmd>TSContextToggle<cr>")
         end,
     },
 

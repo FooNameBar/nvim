@@ -31,7 +31,7 @@ autocmd("TextYankPost", {
 })
 
 -- resize splits if window got resized
-autocmd({ "VimResized" }, {
+autocmd("VimResized", {
   group = augroup("resize_splits"),
   callback = function()
     local current_tab = vim.fn.tabpagenr()
@@ -79,8 +79,13 @@ autocmd("FileType", {
     "neotest-output-panel",
   },
   callback = function(event)
+    local opts = { buffer = event.buf, silent = true  }
     vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+    vim.keymap.set("n", "q", "<cmd>close<cr>", opts)
+    vim.keymap.set("n", "<C-h>", "<C-w><C-h>", opts)
+    vim.keymap.set("n", "<C-j>", "<C-w><C-j>", opts)
+    vim.keymap.set("n", "<C-k>", "<C-w><C-k>", opts)
+    vim.keymap.set("n", "<C-l>", "<C-w><C-l>", opts)
   end,
 })
 

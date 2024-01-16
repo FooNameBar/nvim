@@ -49,7 +49,7 @@ return {
             vim.api.nvim_create_autocmd('LspAttach', {
                 desc = 'LSP actions',
                 callback = function(event)
-                    local opts = { buffer = event.bufnr }
+                    local opts = { buffer = event.buf }
 
                     -- these will be buffer-local keybindings
                     -- because they will only work if a language server is active
@@ -59,10 +59,10 @@ return {
                     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
                     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
                     vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
-                    vim.keymap.set("n", "<leader>ws", "<cmd>Telescope lsp_document_symbols<cr>", opts)
                     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
                     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
                     vim.keymap.set("n", "<leader>lr", "<cmd>Telescope lsp_references<cr>", opts)
+                    vim.keymap.set("n", "<leader>ws", "<cmd>Telescope lsp_document_symbols<cr>", opts)
                 end
             })
 
