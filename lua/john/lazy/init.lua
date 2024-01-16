@@ -1,13 +1,11 @@
 return {
-    { "folke/lazy.nvim", version = "*" },
-
     "ThePrimeagen/vim-be-good",
 
     {
         "kylechui/nvim-surround",
         version = "*",
         event = "VeryLazy",
-        opts = {},
+        opts = {}, -- required
     },
 
     {
