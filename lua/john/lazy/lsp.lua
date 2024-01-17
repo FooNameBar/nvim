@@ -46,6 +46,9 @@ return {
             severity_sort = true,
         },
         config = function()
+            local on_list = function(options)
+                vim.fn.setqflist({}, ' ', options)
+            end
             vim.api.nvim_create_autocmd('LspAttach', {
                 desc = 'LSP actions',
                 callback = function(event)
@@ -56,14 +59,18 @@ return {
                     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
                     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
                     vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
-                    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
                     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
                     vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
                     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
                     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
                     vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-                    vim.keymap.set("n", "<leader>lr", "<cmd>Telescope lsp_references<cr>", opts)
                     vim.keymap.set("n", "<leader>ws", "<cmd>Telescope lsp_document_symbols<cr>", opts)
+                    vim.keymap.set("n", "<leader>lr", "<cmd>Telescope lsp_references<cr>", opts)
+                    vim.keymap.set("n", "gi", function()
+                        vim.lsp.buf.implementation{ on_list=on_list }
+                        vim.cmd.sleep("10ms") -- wait for the lsp
+                        require('trouble').toggle('quickfix')
+                    end, opts)
                 end
             })
 
