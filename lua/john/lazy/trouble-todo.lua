@@ -8,10 +8,17 @@ return {
             t.setup()
             -- NOTE: diagnostics are not exclusive to lsp servers
             -- so these can be global keybindings
-            vim.keymap.set("n", "<leader>vd", function() t.toggle() end, { desc = "Trouble view diagnostics" })
+            vim.keymap.set("n", "<leader>wd",  function()
+                if t.is_open() then
+                    t.close()
+                else
+                    t.toggle("workspace_diagnostics")
+                end
+            end, { desc = "Trouble view diagnostics" })
             vim.keymap.set("n", "]d", function()
                 if t.is_open() then
                     t.next({ skip_groups = true, jump = true })
+                else
                     local ok, err = pcall(vim.cmd.cnext)
                     if not ok and err ~= noErr then
                         vim.notify(err, vim.log.levels.ERROR)

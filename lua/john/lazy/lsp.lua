@@ -61,6 +61,7 @@ return {
                     vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
                     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
                     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+                    vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
                     vim.keymap.set("n", "<leader>lr", "<cmd>Telescope lsp_references<cr>", opts)
                     vim.keymap.set("n", "<leader>ws", "<cmd>Telescope lsp_document_symbols<cr>", opts)
                 end
