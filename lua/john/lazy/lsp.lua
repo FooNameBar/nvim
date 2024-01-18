@@ -1,3 +1,27 @@
+-- Border for hover and signature help
+local border = {
+    { "╭", "FloatBorder" },
+    { "─", "FloatBorder" },
+    { "╮", "FloatBorder" },
+    { "│", "FloatBorder" },
+    { "╯", "FloatBorder" },
+    { "─", "FloatBorder" },
+    { "╰", "FloatBorder" },
+    { "│", "FloatBorder" },
+}
+
+local signs = {
+    Error = '',
+    Warn  = '',
+    Hint  = '',
+    Info  = ''
+}
+
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 return {
     {
         "neovim/nvim-lspconfig",
@@ -21,31 +45,22 @@ return {
             -- Notifications
             "j-hui/fidget.nvim",
         },
-        opts = {
-            diagnostics = {
+        config = function()
+            vim.diagnostic.config({
                 underline = true,
-                update_in_insert = false,
                 virtual_text = {
-                    spacing = 4,
                     source = "if_many",
+                    spacing = 8,
                     -- prefix = "●",
                     -- this will set the prefix to a function that retuns the diagnostics icon based on the severity
                     -- this only works on recent 0.10.0 build. Will be set to "●" when not supported
-                    prefix = "icons",
                 },
                 float = {
-                    focusable = false,
-                    style = "minimal",
-                    border = "rounded",
-                    source = "always",
-                    header = "",
-                    prefix = "",
+                    border = border,
                 },
-
-            },
-            severity_sort = true,
-        },
-        config = function()
+                update_in_insert = false,
+                severity_sort = true,
+            })
             local on_list = function(options)
                 vim.fn.setqflist({}, ' ', options)
             end
@@ -67,27 +82,16 @@ return {
                     vim.keymap.set("n", "<leader>ws", "<cmd>Telescope lsp_document_symbols<cr>", opts)
                     vim.keymap.set("n", "<leader>lr", "<cmd>Telescope lsp_references<cr>", opts)
                     vim.keymap.set("n", "gi", function()
-                        vim.lsp.buf.implementation{ on_list=on_list }
+                        vim.lsp.buf.implementation { on_list = on_list }
                         vim.cmd.sleep("10ms") -- wait for the lsp
                         require('trouble').toggle('quickfix')
                     end, opts)
                 end
             })
 
-            -- Border for hover and signature help
-            local border = {
-                {"╭", "FloatBorder"},
-                {"─", "FloatBorder"},
-                {"╮", "FloatBorder"},
-                {"│", "FloatBorder"},
-                {"╯", "FloatBorder"},
-                {"─", "FloatBorder"},
-                {"╰", "FloatBorder"},
-                {"│", "FloatBorder"},
-            }
-
-            vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = border})
-            vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = border })
+            vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
+            vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help,
+                { border = border })
 
             -- Default Handler setup for Lsps
             local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -132,8 +136,8 @@ return {
                 sources = {
                     { name = 'path' },
                     { name = 'nvim_lsp' },
-                    { name = 'luasnip',  keyword_length = 2 },
-                    { name = 'buffer',   keyword_length = 2 },
+                    { name = 'luasnip', keyword_length = 2 },
+                    { name = 'buffer',  keyword_length = 2 },
                 },
                 mapping = cmp.mapping.preset.insert({
                     -- disable completion with tab
@@ -170,18 +174,6 @@ return {
                     documentation = cmp.config.window.bordered(),
                 }
             })
-
-            local signs = {
-                Error  = '',
-                Warn= '',
-                Hint = '',
-                Info = ''
-            }
-
-            for type, icon in pairs(signs) do
-                local hl = "DiagnosticSign" .. type
-                vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-            end
 
             require("fidget").setup({})
         end,

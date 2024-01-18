@@ -7,7 +7,13 @@ return {
     config = function()
         local builtin = require("telescope.builtin")
         vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "Telescope find files" })
-        vim.keymap.set("n", "<C-p>", builtin.git_files, { desc = "Telescope git files" })
+        vim.keymap.set("n", "<leader>pF", function()
+            builtin.find_files({
+                hidden = true,
+                no_ignore = true,
+                no_ignore_parent = true,
+            })
+        end, { desc = "Telescope find files" })
         vim.keymap.set("n", "<leader>vh", builtin.help_tags, { desc = "Telescope help tags" })
         vim.keymap.set("n", "<leader>gd", builtin.git_status, { desc = "Telescope git status" })
         vim.keymap.set("n", "<leader>km", builtin.keymaps, { desc = "Telescope keymaps" })
