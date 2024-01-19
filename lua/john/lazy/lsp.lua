@@ -79,9 +79,9 @@ return {
                     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
                     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
                     vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-                    vim.keymap.set("n", "<leader>ws", "<cmd>Telescope lsp_document_symbols<cr>", opts)
+                    vim.keymap.set("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", opts)
                     vim.keymap.set("n", "<leader>lr", "<cmd>Telescope lsp_references<cr>", opts)
-                    vim.keymap.set("n", "gi", function()
+                    vim.keymap.set("n", "<leader>li", function()
                         vim.lsp.buf.implementation { on_list = on_list }
                         vim.cmd.sleep("10ms") -- wait for the lsp
                         require('trouble').toggle('quickfix')
