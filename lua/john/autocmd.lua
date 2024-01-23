@@ -82,13 +82,13 @@ autocmd("FileType", {
     "neotest-output-panel",
   },
   callback = function(event)
-    local opts = { buffer = event.buf, silent = true  }
+    local opts = function(desc) return { buffer = event.buf, silent = true, desc = desc  } end
     vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", opts)
-    vim.keymap.set("n", "<C-h>", "<C-w><C-h>", opts)
-    vim.keymap.set("n", "<C-j>", "<C-w><C-j>", opts)
-    vim.keymap.set("n", "<C-k>", "<C-w><C-k>", opts)
-    vim.keymap.set("n", "<C-l>", "<C-w><C-l>", opts)
+    vim.keymap.set("n", "q", "<cmd>close<cr>", opts("Autocmd close filetype with q"))
+    vim.keymap.set("n", "<C-h>", "<C-w><C-h>", opts("Autocmd move to left window"))
+    vim.keymap.set("n", "<C-j>", "<C-w><C-j>", opts("Autocmd move to below window"))
+    vim.keymap.set("n", "<C-k>", "<C-w><C-k>", opts("Autocmd move to above window"))
+    vim.keymap.set("n", "<C-l>", "<C-w><C-l>", opts("Autocmd move to right window"))
   end,
 })
 

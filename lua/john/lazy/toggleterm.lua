@@ -28,15 +28,15 @@ return {
         vim.api.nvim_create_autocmd('TermOpen', {
             desc = 'Terminal Keymaps',
             callback = function(event)
-                local opts = { buffer = event.buf }
+                local opts = function(desc) return { buffer = event.buf, desc = desc } end
 
-                vim.keymap.set("t", "<C-space>", [[<C-\><C-n>]], opts)
-                vim.keymap.set("n", "<C-space>", "<cmd>startinsert!<cr>", opts)
-                vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
-                vim.keymap.set("n", "<C-h>", "<cmd>wincmd h<cr>", opts)
-                vim.keymap.set("n", "<C-j>", "<cmd>wincmd j<cr>", opts)
-                vim.keymap.set("n", "<C-k>", "<cmd>wincmd k<cr>", opts)
-                vim.keymap.set("n", "<C-l>", "<cmd>wincmd l<cr>", opts)
+                vim.keymap.set("t", "<C-space>", [[<C-\><C-n>]], opts("Toggleterm normal mode"))
+                vim.keymap.set("n", "<C-space>", "<cmd>startinsert!<cr>", opts("Toggleterm insert mode"))
+                vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts("Toggleterm window action prefix"))
+                vim.keymap.set("n", "<C-h>", "<cmd>wincmd h<cr>", opts("Toggleterm move to left window (normal mode)"))
+                vim.keymap.set("n", "<C-j>", "<cmd>wincmd j<cr>", opts("Toggleterm move to below window (normal mode)"))
+                vim.keymap.set("n", "<C-k>", "<cmd>wincmd k<cr>", opts("Toggleterm move to above window (normal mode)"))
+                vim.keymap.set("n", "<C-l>", "<cmd>wincmd l<cr>", opts("Toggleterm move to right window (normal mode)"))
             end
         })
         vim.api.nvim_create_autocmd("BufEnter", {

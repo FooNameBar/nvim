@@ -67,25 +67,25 @@ return {
             vim.api.nvim_create_autocmd('LspAttach', {
                 desc = 'LSP actions',
                 callback = function(event)
-                    local opts = { buffer = event.buf }
+                    local opts = function(desc) return { buffer = event.buf, desc = desc } end
 
                     -- these will be buffer-local keybindings
                     -- because they will only work if a language server is active
-                    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-                    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-                    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
-                    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                    vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
-                    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-                    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-                    vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-                    vim.keymap.set("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", opts)
-                    vim.keymap.set("n", "<leader>lr", "<cmd>Telescope lsp_references<cr>", opts)
+                    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts("Lsp go to definition"))
+                    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts("Lsp go to declaration"))
+                    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts("Lsp go to type definition"))
+                    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts("Lsp symbol hover"))
+                    vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts("Lsp signature help"))
+                    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts("Lsp code action"))
+                    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts("Lsp rename symbol"))
+                    vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts("Lsp diagnostic floating window"))
+                    vim.keymap.set("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", opts("Telescope lsp_document_symbols"))
+                    vim.keymap.set("n", "<leader>lr", "<cmd>Telescope lsp_references<cr>", opts("Telescope lsp_references"))
                     vim.keymap.set("n", "<leader>li", function()
                         vim.lsp.buf.implementation { on_list = on_list }
                         vim.cmd.sleep("10ms") -- wait for the lsp
                         require('trouble').toggle('quickfix')
-                    end, opts)
+                    end, opts("Trouble lsp implementations for symbol"))
                 end
             })
 
