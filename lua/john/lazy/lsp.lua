@@ -108,6 +108,7 @@ return {
                     'eslint',
                     'clangd',
                     'gopls',
+                    'lua_ls',
                 },
                 handlers = {
                     -- Customize language servers here
