@@ -2,7 +2,6 @@ vim.g.mapleader = " "
 local map = vim.keymap
 
 -- Util remaps
-map.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Keymap for netrw-:Explore" })
 map.set("n", "J", "mzJ`z", { desc = "Concat line below but do not move cursor" })
 map.set("i", "<C-c>", "<Esc>", { desc = "Control C acts like Escape in Insert Mode" })
 map.set("n", "Q", "<nop>", { desc = "Disable Q" })
