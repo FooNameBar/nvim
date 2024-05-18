@@ -2,8 +2,6 @@ function ColorMyPencils(color)
     color = color or "tokyonight-storm"
 
     vim.cmd.colorscheme(color)
-
-    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 end
 
 return {
@@ -13,7 +11,6 @@ return {
     config = function()
         require('tokyonight').setup({
             style = "storm",
-            transparent = true,
             terminal_colors = true,
             styles = {
                 comments = { italic = false },
