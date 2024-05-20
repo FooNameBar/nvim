@@ -56,16 +56,14 @@ return {
                         [vim.diagnostic.severity.INFO] = '',
                     },
                     linehl = {
-                        [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
-                        [vim.diagnostic.severity.WARN] = 'WarningMsg',
-                        [vim.diagnostic.severity.HINT] = 'HintMsg',
-                        [vim.diagnostic.severity.INFO] = 'InfoMsg',
+                        [vim.diagnostic.severity.ERROR] = 'DiagnosticError',
+                        [vim.diagnostic.severity.WARN] = 'DiagnosticWarn',
                     },
                     numhl = {
-                        [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
-                        [vim.diagnostic.severity.WARN] = 'WarningMsg',
-                        [vim.diagnostic.severity.HINT] = 'HintMsg',
-                        [vim.diagnostic.severity.INFO] = 'InfoMsg',
+                        [vim.diagnostic.severity.ERROR] = 'DiagnosticError',
+                        [vim.diagnostic.severity.WARN] = 'DiagnosticWarn',
+                        [vim.diagnostic.severity.HINT] = 'DiagnosticHint',
+                        [vim.diagnostic.severity.INFO] = 'DiagnosticInfo',
                     },
                 },
             })
