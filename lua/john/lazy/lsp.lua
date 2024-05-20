@@ -10,18 +10,6 @@ local border = {
     { "│", "FloatBorder" },
 }
 
-local signs = {
-    Error = '',
-    Warn  = '',
-    Hint  = '',
-    Info  = ''
-}
-
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
 return {
     {
         "neovim/nvim-lspconfig",
@@ -60,6 +48,26 @@ return {
                 },
                 update_in_insert = false,
                 severity_sort = true,
+                signs = {
+                    text = {
+                        [vim.diagnostic.severity.ERROR] = '',
+                        [vim.diagnostic.severity.WARN] = '',
+                        [vim.diagnostic.severity.HINT] = '',
+                        [vim.diagnostic.severity.INFO] = '',
+                    },
+                    linehl = {
+                        [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+                        [vim.diagnostic.severity.WARN] = 'WarningMsg',
+                        [vim.diagnostic.severity.HINT] = 'HintMsg',
+                        [vim.diagnostic.severity.INFO] = 'InfoMsg',
+                    },
+                    numhl = {
+                        [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+                        [vim.diagnostic.severity.WARN] = 'WarningMsg',
+                        [vim.diagnostic.severity.HINT] = 'HintMsg',
+                        [vim.diagnostic.severity.INFO] = 'InfoMsg',
+                    },
+                },
             })
             local on_list = function(options)
                 vim.fn.setqflist({}, ' ', options)
