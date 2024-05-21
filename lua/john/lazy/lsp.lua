@@ -57,7 +57,6 @@ return {
                     },
                     linehl = {
                         [vim.diagnostic.severity.ERROR] = 'DiagnosticError',
-                        [vim.diagnostic.severity.WARN] = 'DiagnosticWarn',
                     },
                     numhl = {
                         [vim.diagnostic.severity.ERROR] = 'DiagnosticError',
