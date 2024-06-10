@@ -149,6 +149,8 @@ return {
                     ['<Tab'] = nil,
                     ['<S-Tab>'] = nil,
 
+                    ['<C-d>'] = cmp.mapping.scroll_docs(-2),
+                    ['<C-u>'] = cmp.mapping.scroll_docs(2),
                     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
                     ['<C-y>'] = cmp.mapping.confirm({ select = true }),

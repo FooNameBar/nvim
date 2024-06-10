@@ -1,6 +1,6 @@
 return {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.6",
+    tag = "0.1.8",
     dependencies = {
         "nvim-lua/plenary.nvim",
     },
@@ -30,14 +30,14 @@ return {
         end, { desc = "Telescope grep search input" })
 
         local actions = require("telescope.actions")
-        local trouble = require("trouble.providers.telescope")
+        local trouble = require("trouble.sources.telescope")
         local telescope = require("telescope")
 
         telescope.setup {
             defaults = {
                 mappings = {
-                    i = { ["<C-t>"] = trouble.open_with_trouble, ["<Esc>"] = actions.close, ["<C-Space>"] = { "<Esc>", type = "command" } },
-                    n = { ["<C-t>"] = trouble.open_with_trouble, ["<Esc>"] = actions.close },
+                    i = { ["<C-t>"] = trouble.open, ["<Esc>"] = actions.close, ["<C-Space>"] = { "<Esc>", type = "command" } },
+                    n = { ["<C-t>"] = trouble.open, ["<Esc>"] = actions.close },
                 },
                 layout_config = { width = 0.9, preview_width = 0.65 },
             },
