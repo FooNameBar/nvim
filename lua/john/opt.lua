@@ -1,6 +1,7 @@
 local opt = vim.opt
 
 -- Lazy options
+opt.autoindent = false                             -- No autoindent
 opt.autowrite = true                               -- Write a modified buffer on events
 opt.backup = false                                 -- No backup when overwriting file
 opt.colorcolumn = "80"
@@ -46,16 +47,16 @@ opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 opt.undofile = true
 opt.undolevels = 10000
 opt.updatetime = 200
-opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
+opt.virtualedit = "block"          -- Allow cursor to move where there is no text in visual block mode
 opt.wildmode = "longest:full,full" -- Command-line completion mode
-opt.winminwidth = 5 -- Minimum window width
+opt.winminwidth = 5                -- Minimum window width
 opt.wrap = false
 opt.fillchars = {
-  foldopen = "",
-  foldclose = "",
-  -- fold = "⸱",
-  fold = " ",
-  foldsep = " ",
-  diff = "╱",
-  eob = " ",
+    foldopen = "",
+    foldclose = "",
+    -- fold = "⸱",
+    fold = " ",
+    foldsep = " ",
+    diff = "╱",
+    eob = " ",
 }
