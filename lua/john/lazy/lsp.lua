@@ -10,6 +10,14 @@ local border = {
     { "│", "FloatBorder" },
 }
 
+-- Global border override
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+    opts = opts or {}
+    opts.border = opts.border or border
+    return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+
 return {
     {
         "neovim/nvim-lspconfig",
@@ -43,9 +51,6 @@ return {
                     -- this will set the prefix to a function that retuns the diagnostics icon based on the severity
                     -- this only works on recent 0.10.0 build. Will be set to "●" when not supported
                 },
-                float = {
-                    border = border,
-                },
                 update_in_insert = false,
                 severity_sort = true,
                 signs = {
@@ -54,9 +59,6 @@ return {
                         [vim.diagnostic.severity.WARN] = '',
                         [vim.diagnostic.severity.HINT] = '',
                         [vim.diagnostic.severity.INFO] = '',
-                    },
-                    linehl = {
-                        [vim.diagnostic.severity.ERROR] = 'DiagnosticError',
                     },
                     numhl = {
                         [vim.diagnostic.severity.ERROR] = 'DiagnosticError',
@@ -93,10 +95,6 @@ return {
                     end, opts("Trouble lsp implementations for symbol"))
                 end
             })
-
-            vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
-            vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help,
-                { border = border })
 
             -- Default Handler setup for Lsps
             local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
