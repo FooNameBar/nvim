@@ -147,8 +147,8 @@ return {
                     ['<Tab'] = nil,
                     ['<S-Tab>'] = nil,
 
-                    ['<C-d>'] = cmp.mapping.scroll_docs(2),
-                    ['<C-u>'] = cmp.mapping.scroll_docs(-2),
+                    ['<C-d>'] = cmp.mapping.scroll_docs(4),
+                    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
                     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
                     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
@@ -175,10 +175,14 @@ return {
                 },
                 window = {
                     completion = cmp.config.window.bordered(),
-                    documentation = cmp.config.window.bordered(),
+                    documentation = cmp.config.window.bordered({
+                        winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+                        scrollable = true, -- Enable scrolling for documentation window
+                    }),
                 }
             })
 
+            -- display LSP server progress
             require("fidget").setup({})
         end,
     },
