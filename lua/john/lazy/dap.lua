@@ -11,7 +11,26 @@ return {
         local dap = require "dap"
         local ui = require "dapui"
 
-        require("dapui").setup()
+        require("dapui").setup({
+            layouts = {
+                {
+                    elements = {
+                        {id = "breakpoints", size = 0.20},
+                        {id = "stacks", size = 0.50},
+                        {id = "repl", size = 0.30},
+                    },
+                    position = "right",
+                    size = 80,
+                },
+                {
+                    elements = {
+                        {id = "scopes", size = 0.75},
+                    },
+                    position = "bottom",
+                    size = 20,
+                },
+            },
+        })
         require("dap-go").setup()
 
         require("nvim-dap-virtual-text").setup()
@@ -34,12 +53,12 @@ return {
         end, { desc = "" })
 
         vim.keymap.set("n", "<F1>", dap.continue, { desc = "dap: Debugger start/continue" })
-        vim.keymap.set("n", "<F2>", dap.step_into, { desc = "dap: Debugger step into" })
-        vim.keymap.set("n", "<F3>", dap.step_over, { desc = "dap: Debugger step over" })
-        vim.keymap.set("n", "<F4>", dap.step_out, { desc = "dap: Debugger step out" })
-        vim.keymap.set("n", "<F5>", dap.step_back, { desc = "dap: Debugger step back" })
-        vim.keymap.set("n", "<F6>", dap.restart, { desc = "dap: Debugger restart" })
-        vim.keymap.set("n", "<F7>", dap.terminate, { desc = "dap: Debugger terminate" })
+        vim.keymap.set("n", "<F5>", dap.step_out, { desc = "dap: Debugger step out" })
+        vim.keymap.set("n", "<F6>", dap.step_back, { desc = "dap: Debugger step back" })
+        vim.keymap.set("n", "<F7>", dap.step_into, { desc = "dap: Debugger step into" })
+        vim.keymap.set("n", "<F8>", dap.step_over, { desc = "dap: Debugger step over" })
+        vim.keymap.set("n", "<F11>", dap.restart, { desc = "dap: Debugger restart" })
+        vim.keymap.set("n", "<F12>", dap.terminate, { desc = "dap: Debugger terminate" })
 
         --Handled by nvim-dap-go
         dap.adapters.delve = {
