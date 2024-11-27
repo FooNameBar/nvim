@@ -7,14 +7,16 @@ return {
     config = function()
         local builtin = require("telescope.builtin")
         vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "Telescope find files" })
-        vim.keymap.set("n", "<leader>pF", function()
+        vim.keymap.set("n", "<leader>df", function()
+            local path = vim.fn.expand("%:p:h")
+            path = string.gsub(path, "oil://", "")
             builtin.find_files({
+                cwd = path,
                 hidden = true,
-                no_ignore = true,
                 no_ignore_parent = true,
             })
-        end, { desc = "Telescope find files" })
-        vim.keymap.set("n", "<leader>vh", builtin.help_tags, { desc = "Telescope help tags" })
+        end, { desc = "Telescope find files of current buffer dir" })
+        vim.keymap.set("n", "<leader>ht", builtin.help_tags, { desc = "Telescope help tags" })
         vim.keymap.set("n", "<leader>gd", builtin.git_status, { desc = "Telescope git status" })
         vim.keymap.set("n", "<leader>km", builtin.keymaps, { desc = "Telescope keymaps" })
         vim.keymap.set("n", "<leader>cw", function()
