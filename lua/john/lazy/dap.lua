@@ -15,19 +15,19 @@ return {
             layouts = {
                 {
                     elements = {
-                        {id = "breakpoints", size = 0.20},
+                        {id = "scopes", size = 1},
+                    },
+                    position = "bottom",
+                    size = 20,
+                },
+                {
+                    elements = {
                         {id = "stacks", size = 0.50},
+                        {id = "breakpoints", size = 0.20},
                         {id = "repl", size = 0.30},
                     },
                     position = "right",
                     size = 80,
-                },
-                {
-                    elements = {
-                        {id = "scopes", size = 0.75},
-                    },
-                    position = "bottom",
-                    size = 20,
                 },
             },
         })
