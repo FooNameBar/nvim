@@ -15,7 +15,7 @@ return {
                 hidden = true,
                 no_ignore_parent = true,
             })
-        end, { desc = "Telescope find files of current buffer dir" })
+        end, { desc = "Telescope find files of current buffer directory" })
         vim.keymap.set("n", "<leader>ht", builtin.help_tags, { desc = "Telescope help tags" })
         vim.keymap.set("n", "<leader>gd", builtin.git_status, { desc = "Telescope git status" })
         vim.keymap.set("n", "<leader>km", builtin.keymaps, { desc = "Telescope keymaps" })
@@ -27,9 +27,12 @@ return {
             local word = vim.fn.expand("<cWORD>")
             builtin.grep_string({ search = word })
         end, { desc = "Telescope search word under cursor between non-white space chars" })
-        vim.keymap.set("n", "<leader>ps", function()
-            builtin.grep_string({ search = vim.fn.input("Grep > ") })
-        end, { desc = "Telescope grep search input" })
+        vim.keymap.set("n", "<leader>ps", builtin.live_grep, { desc = "Telescope live grep search project directory" })
+        vim.keymap.set("n", "<leader>ds", function()
+            local path = vim.fn.expand("%:p:h")
+            path = string.gsub(path, "oil://", "")
+            builtin.live_grep({ cwd = path, })
+        end, { desc = "Telescope live grep search current buffer directory" })
 
         local actions = require("telescope.actions")
         local trouble = require("trouble.sources.telescope")
