@@ -1,5 +1,8 @@
 return {
-    "ThePrimeagen/vim-be-good",
+    {
+        "ThePrimeagen/vim-be-good",
+        commit = "4fa57b7",
+    },
 
     {
         "kylechui/nvim-surround",

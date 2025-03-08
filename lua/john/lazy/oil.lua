@@ -7,6 +7,7 @@ return {
                 columns = { "icon" },
                 keymaps = {
                     ["<C-h>"] = false,
+                    ["<C-s>"] = false,
                     ["<M-h"] = "actions.select_split",
                 },
                 view_options = {
