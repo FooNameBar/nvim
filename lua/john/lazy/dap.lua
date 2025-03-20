@@ -75,14 +75,24 @@ return {
                 type = "delve",
                 name = "Debug",
                 request = "launch",
-                program = "${file}"
+                program = "${workspaceFolder}"
+            },
+            {
+                type = "delve",
+                name = "Debug w/Args",
+                request = "launch",
+                program = "${workspaceFolder}",
+                args = function()
+                    local input = vim.fn.input("Arguments: ")
+                    return vim.split(input, " ")
+                end,
             },
             {
                 type = "delve",
                 name = "Debug test",
                 request = "launch",
                 mode = "test",
-                program = "${file}"
+                program = "${workspaceFolder}"
             },
             {
                 type = "delve",
