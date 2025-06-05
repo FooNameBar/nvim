@@ -1,5 +1,6 @@
 return {
     'nvim-lualine/lualine.nvim',
+    event = "VimEnter",
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = function()
         local diagSection = {
@@ -64,7 +65,7 @@ return {
                 lualine_c = { diagSection, filenameSection },
                 lualine_x = { 'encoding', fileformatSection, 'filetype' },
                 lualine_y = { diffSection },
-                lualine_z = { 'branch' }
+                lualine_z = { {'branch', use_cache = true } }
             },
             inactive_sections = {
                 lualine_a = {},

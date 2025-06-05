@@ -5,14 +5,9 @@ return {
     },
 
     {
-        "kylechui/nvim-surround",
-        version = "*",
-        event = "VeryLazy",
-        opts = {}, -- required
-    },
-
-    {
         "luckasRanarison/tailwind-tools.nvim",
+        event = {"BufReadPre", "BufNewFile" },
+        ft = { "html", "css", "javascript", "typescript", "javascriptreact", "typescriptreact", "astro", "vue", "svelte" },
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         opts = {}
     },
