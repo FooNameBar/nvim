@@ -65,7 +65,7 @@ return {
                 lualine_c = { diagSection, filenameSection },
                 lualine_x = { 'encoding', fileformatSection, 'filetype' },
                 lualine_y = { diffSection },
-                lualine_z = { {'branch', use_cache = true } }
+                lualine_z = { { 'branch', use_cache = true } },
             },
             inactive_sections = {
                 lualine_a = {},
