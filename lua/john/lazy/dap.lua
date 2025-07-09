@@ -16,16 +16,16 @@ return {
             layouts = {
                 {
                     elements = {
-                        {id = "scopes", size = 1},
+                        { id = "scopes", size = 1 },
                     },
                     position = "bottom",
                     size = 20,
                 },
                 {
                     elements = {
-                        {id = "stacks", size = 0.50},
-                        {id = "breakpoints", size = 0.20},
-                        {id = "repl", size = 0.30},
+                        { id = "stacks",      size = 0.50 },
+                        { id = "breakpoints", size = 0.20 },
+                        { id = "repl",        size = 0.30 },
                     },
                     position = "right",
                     size = 80,
@@ -43,7 +43,8 @@ return {
 
         -- Customizing the icons for breakpoints
         vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DapBreakpoint', linehl = '', numhl = '' })
-        vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'DapBreakpointCondition', linehl = '', numhl = '' })
+        vim.fn.sign_define('DapBreakpointCondition',
+            { text = '', texthl = 'DapBreakpointCondition', linehl = '', numhl = '' })
         vim.fn.sign_define('DapLogPoint', { text = '', texthl = 'DapLogPoint', linehl = '', numhl = '' })
 
         vim.keymap.set("n", "<leader>bp", dap.toggle_breakpoint, { desc = "dap: Toggle debugger breakpoint" })
@@ -71,18 +72,27 @@ return {
             },
         }
 
+        local relDir = function()
+            local input = vim.fn.input("Directory of main.go: ")
+            -- input = input:gsub("^%s*(.-)%s*$", "%1") -- Trim whitespace
+            if input == "" then
+                return "${workspaceFolder}"
+            end
+            return "${workspaceFolder}/" .. input
+        end
+
         dap.configurations.go = {
             {
                 type = "delve",
                 name = "Debug",
                 request = "launch",
-                program = "${workspaceFolder}"
+                program = relDir,
             },
             {
                 type = "delve",
-                name = "Debug w/Args",
+                name = "Debug w/Path and Args",
                 request = "launch",
-                program = "${workspaceFolder}",
+                program = relDir,
                 args = function()
                     local input = vim.fn.input("Arguments: ")
                     return vim.split(input, " ")
@@ -93,7 +103,7 @@ return {
                 name = "Debug test",
                 request = "launch",
                 mode = "test",
-                program = "${workspaceFolder}"
+                program = relDir,
             },
             {
                 type = "delve",
