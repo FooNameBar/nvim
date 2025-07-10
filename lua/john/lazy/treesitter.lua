@@ -103,6 +103,7 @@ return {
                 },
             },
         },
+        event = "VeryLazy",
         config = function (_, opts)
             if type(opts.ensure_installed) == "table" then
                 -- @type table<string, boolean>
@@ -125,6 +126,7 @@ return {
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },
+        event = "VeryLazy",
         config = function()
 
             local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
@@ -182,6 +184,7 @@ return {
             zindex = 20,     -- The Z-index of the context window
             on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
         },
+        event = "VeryLazy",
         config = function()
             vim.cmd('hi TreesitterContextBottom gui=underline guisp=Grey')
             vim.keymap.set("n", "<leader>tc", "<cmd>TSContextToggle<cr>", { desc = "Treesitter Context Toggle" })

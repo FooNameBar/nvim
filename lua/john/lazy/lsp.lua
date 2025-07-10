@@ -41,6 +41,7 @@ return {
             -- Notifications
             "j-hui/fidget.nvim",
         },
+        event = "VeryLazy",
         config = function()
             vim.diagnostic.config({
                 underline = true,

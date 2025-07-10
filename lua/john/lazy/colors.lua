@@ -24,6 +24,6 @@ return {
         dim_inactive = true,
     },
     config = function()
-        ColorMyPencils(false, false)
+        ColorMyPencils(false, true)
     end,
 }
