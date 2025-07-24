@@ -6,11 +6,9 @@ map.set("n", "J", "mzJ`z", { desc = "Concat line below but do not move cursor" }
 map.set("i", "<C-c>", "<Esc>", { desc = "Control C acts like Escape in Insert Mode" })
 map.set("n", "Q", "<nop>", { desc = "Disable Q" })
 map.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "Tmux Sessionizer" })
-map.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format with lsp" })
+-- map.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format with lsp" }) No longer needed, use =G instead
 map.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true,  desc = "Make current file executable" })
 map.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Search and replace word under cursor" })
-map.set("n", "<leader>we", "<cmd>w | :Ex<CR>", { silent = true }, { desc = "Write and move to netrw-:Explore" })
-
 
 -- Center on down/up
 map.set("n", "<C-d>", "<C-d>zz", { desc = "Maintain centered cursor on page down" })
@@ -21,7 +19,7 @@ map.set("n", "n", "nzzzv", { desc = "Center on next search item" })
 map.set("n", "N", "Nzzzv", { desc = "Center on prev search item" })
 
 -- greatest remap ever
-map.set("x", "<leader>p", [["_dP]], { desc = "Delete a highlighted word into the void register and then paste over" })
+map.set("v", "<leader>p", [["_dP]], { desc = "Delete a highlighted word into the void register and then paste over" })
 
 -- next greatest remap ever : asbjornHaland
 map.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank into clipboard register" })
@@ -57,7 +55,7 @@ map.set("i", ".", ".<c-g>u")
 map.set("i", ";", ";<c-g>u")
 
 -- save file
-map.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+map.set({ "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 
 -- better indenting
 map.set("v", "<", "<gv")

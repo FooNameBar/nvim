@@ -1,7 +1,7 @@
 return {
     {
         "folke/trouble.nvim",
-        opts = { use_diagnostics_signs = true },
+        opts = { },
         config = function()
             local t = require("trouble")
             local noErr = "Vim:E42: No Errors"
@@ -23,7 +23,8 @@ return {
             end, { desc = "Trouble next item (quickfix as fallback)" })
             vim.keymap.set("n", "[d", function()
                 if t.is_open() then
-                    t.previous({ skip_groups = true, jump = true })
+                    -- Using prev instead because previous is broken
+                    t.prev({ skip_groups = true, jump = true })
                 elseif vim.diagnostic.get_prev_pos({ wrap = true}) then
                     vim.diagnostic.goto_prev({ wrap = true })
                 else
