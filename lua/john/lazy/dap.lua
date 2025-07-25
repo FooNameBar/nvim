@@ -34,7 +34,7 @@ return {
         })
         require("dap-go").setup()
 
-        require("nvim-dap-virtual-text").setup()
+        require("nvim-dap-virtual-text").setup{}
 
         -- Customizing the colors for breakpoints in the sign column
         vim.cmd([[highlight DapBreakpoint guifg=#ff0000 guibg=NONE]])          -- Red for regular breakpoints

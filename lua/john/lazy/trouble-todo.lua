@@ -3,37 +3,37 @@ return {
         "folke/trouble.nvim",
         opts = { },
         config = function()
-            local t = require("trouble")
-            local noErr = "Vim:E42: No Errors"
-            t.setup()
+            require("trouble").setup{
+                focus = true,
+                auto_jump = true,
+                win = {
+                    type = "split",
+                    size = {
+                        height = 25,
+                    },
+                },
+                preview = {
+                    type = "split",
+                    relative = "win",
+                    position = "right",
+                    size = 0.5,
+                },
+                filter = {
+                    any = {
+                        buf = 0, -- current buffer
+                        {
+                            severity = vim.diagnostic.severity.ERROR, -- errors only
+                            -- limit to files in the current project
+                            function(item)
+                                return item.filename:find((vim.loop or vim.uv).cwd(), 1, true)
+                            end,
+                        },
+                    },
+                },
+            }
             -- NOTE: diagnostics are not exclusive to lsp servers
             -- so these can be global keybindings
-            vim.keymap.set("n", "<leader>wd", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Trouble view diagnostics" })
-            vim.keymap.set("n", "]d", function()
-                if t.is_open() then
-                    t.next({ skip_groups = true, jump = true })
-                elseif vim.diagnostic.get_next_pos({ wrap = true}) then
-                    vim.diagnostic.goto_next({ wrap = true })
-                else
-                    local ok, err = pcall(vim.cmd.cnext)
-                    if not ok and err ~= noErr then
-                        vim.notify(err, vim.log.levels.ERROR)
-                    end
-                end
-            end, { desc = "Trouble next item (quickfix as fallback)" })
-            vim.keymap.set("n", "[d", function()
-                if t.is_open() then
-                    -- Using prev instead because previous is broken
-                    t.prev({ skip_groups = true, jump = true })
-                elseif vim.diagnostic.get_prev_pos({ wrap = true}) then
-                    vim.diagnostic.goto_prev({ wrap = true })
-                else
-                    local ok, err = pcall(vim.cmd.cprev)
-                    if not ok and err ~= noErr then
-                        vim.notify(err, vim.log.levels.ERROR)
-                    end
-                end
-            end, { desc = "Trouble prev item (quickfix as fallback)" })
+            vim.keymap.set("n", "<leader>wd", "<cmd>Trouble diagnostics toggle focus=true<cr>", { desc = "Trouble view diagnostics" })
         end,
     },
     -- Finds and lists all of the TODO, HACK, BUG, etc comment

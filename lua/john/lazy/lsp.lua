@@ -22,6 +22,22 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
+            -- Lua and other library config
+            {
+                "folke/lazydev.nvim",
+                ft = "lua", -- only load on lua files
+                opts = {
+                    library = {
+                        -- See the configuration section for more details
+                        -- Load luvit types when the `vim.uv` word is found
+                        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+                        { plugins = { "nvim-dap-ui" }, types = true },
+                    },
+                },
+            },
+            -- LSP plugin
+            "williamboman/mason.nvim",
+
             -- Autocompletion
             "hrsh7th/nvim-cmp",
             "hrsh7th/cmp-nvim-lsp",
@@ -39,26 +55,8 @@ return {
         },
         event = "VeryLazy",
         config = function()
-            -- LSP Configuration
-            local lspconfig = require('lspconfig')
-            lspconfig.gopls.setup {}
-
-            lspconfig.lua_ls.setup {
-                settings = {
-                    Lua = {
-                        diagnostics = {
-                            globals = { "vim" }, -- Recognize vim global for Neovim configs
-                        },
-                        workspace = {
-                            library = vim.api.nvim_get_runtime_file("", true), -- Load Neovim runtime files
-                            checkThirdParty = false,                           -- Avoid prompting for third-party libraries
-                        },
-                        telemetry = {
-                            enable = false, -- Disable telemetry
-                        },
-                    },
-                },
-            }
+            require('mason').setup{}
+            require('lspconfig').lua_ls.setup {}
 
             vim.diagnostic.config({
                 underline = true,
