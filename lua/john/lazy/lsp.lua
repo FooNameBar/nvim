@@ -57,6 +57,7 @@ return {
         config = function()
             require('mason').setup{}
             require('lspconfig').lua_ls.setup {}
+            require('lspconfig').gopls.setup {}
 
             vim.diagnostic.config({
                 underline = true,
