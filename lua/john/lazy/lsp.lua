@@ -56,8 +56,14 @@ return {
         event = "VeryLazy",
         config = function()
             require('mason').setup{}
-            require('lspconfig').lua_ls.setup {}
+            require('lspconfig').bashls.setup {}
             require('lspconfig').gopls.setup {}
+            require('lspconfig').cssls.setup {}
+            require('lspconfig').html.setup {}
+            require('lspconfig').jsonls.setup {}
+            require('lspconfig').lua_ls.setup {}
+            require('lspconfig').tailwindcss.setup {}
+            require('lspconfig').ts_ls.setup {}
 
             vim.diagnostic.config({
                 underline = true,
