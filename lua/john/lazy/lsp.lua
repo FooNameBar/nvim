@@ -111,6 +111,7 @@ return {
                     -- vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts("Lsp diagnostic floating window")) use '<C-w>d'
                     vim.keymap.set("n", "gO", "<cmd>Telescope lsp_document_symbols<cr>", opts("Telescope lsp_document_symbols"))
                     vim.keymap.set("n", "grr", "<cmd>Telescope lsp_references<cr>", opts("Telescope lsp_references"))
+                    vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format with lsp" })
                     -- vim.keymap.set("n", "<leader>li", function() use "gri"
                     --     vim.lsp.buf.implementation { on_list = on_list }
                     --     vim.cmd.sleep("10ms") -- wait for the lsp

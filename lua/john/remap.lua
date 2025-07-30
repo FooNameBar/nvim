@@ -6,7 +6,6 @@ map.set("n", "J", "mzJ`z", { desc = "Concat line below but do not move cursor" }
 map.set("i", "<C-c>", "<Esc>", { desc = "Control C acts like Escape in Insert Mode" })
 map.set("n", "Q", "<nop>", { desc = "Disable Q" })
 map.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "Tmux Sessionizer" })
--- map.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format with lsp" }) No longer needed, use =G instead
 map.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true,  desc = "Make current file executable" })
 map.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Search and replace word under cursor" })
 

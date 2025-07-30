@@ -16,9 +16,6 @@ return {
             direction = "horizontal",
             close_on_exit = true,
             shell = vim.o.shell,
-            on_open = function()
-                vim.cmd("startinsert!")
-            end,
         })
 
         local node = require('toggleterm.terminal').Terminal:new({ cmd = "node", hidden = true })
@@ -40,8 +37,9 @@ return {
             end
         })
         vim.api.nvim_create_autocmd("BufEnter", {
-            pattern = { "*#toggleterm#*" },
+            pattern = { "term://*toggleterm#*" },
             callback = function()
+                vim.cmd("sleep 10m")
                 vim.cmd("startinsert!")
             end,
         })
