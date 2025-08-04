@@ -13,8 +13,7 @@ return {
             path = string.gsub(path, "oil://", "")
             builtin.find_files({
                 cwd = path,
-                hidden = true,
-                no_ignore_parent = true,
+                hidden = true
             })
         end, { desc = "Telescope find files of current buffer directory" })
         vim.keymap.set("n", "<leader>ht", builtin.help_tags, { desc = "Telescope help tags" })
@@ -32,7 +31,10 @@ return {
         vim.keymap.set("n", "<leader>ds", function()
             local path = vim.fn.expand("%:p:h")
             path = string.gsub(path, "oil://", "")
-            builtin.live_grep({ cwd = path, })
+            print(path)
+            builtin.live_grep({
+                cwd = path,
+            })
         end, { desc = "Telescope live grep search current buffer directory" })
 
         local actions = require("telescope.actions")
