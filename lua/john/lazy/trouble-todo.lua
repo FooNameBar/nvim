@@ -48,13 +48,33 @@ return {
         "folke/todo-comments.nvim",
         cmd = { "TodoTrouble", "TodoTelescope" },
         event = "VeryLazy",
-        opts = {},
+        opts = {
+            search = {
+                command = "rg",
+                args = {
+                    "--color=never",
+                    "--no-heading",
+                    "--with-filename",
+                    "--line-number",
+                    "--column",
+                    "--smart-case",
+                    "--hidden"
+                },
+                -- regex that will be used to match keywords.
+                -- don't replace the (KEYWORDS) placeholder
+                pattern = [[\b(KEYWORDS):]], -- ripgrep regex
+            },
+        },
         config = function()
             require("todo-comments").setup()
-            vim.keymap.set("n", "<leader>xt", "<cmd>TodoTrouble<cr>",                              { desc = "Todo (Trouble)" })
+            -- FIX: Does not return anything
+            vim.keymap.set("n", "<leader>xt", "<cmd>TodoTrouble<cr>", { desc = "Todo (Trouble)" })
             vim.keymap.set("n", "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>",      { desc = "Todo/Fix/Fixme (Trouble)" })
-            vim.keymap.set("n", "<leader>st", "<cmd>TodoTelescope<cr>",                            { desc = "Todo"  })
-            vim.keymap.set("n", "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",    { desc = "Todo/Fix/Fixme"  })
+            vim.keymap.set("n", "<leader>st", function()
+                local cwd = vim.fn.getcwd()
+                vim.cmd("TodoTelescope cwd="..cwd)
+            end, { desc = "Todo using Telescope to display results"  })
+            vim.keymap.set("n", "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",    { desc = "Todo/Fix/Fixme with Telescope"  })
         end,
     },
 }
