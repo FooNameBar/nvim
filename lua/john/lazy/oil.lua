@@ -15,7 +15,7 @@ return {
                 },
             }
 
-            -- Open parent directory in current window
+            -- FIX: Does not work outside of tmux
             vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
         end,
     },
