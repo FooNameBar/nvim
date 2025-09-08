@@ -58,7 +58,7 @@ autocmd("BufReadPost", {
   end,
 })
 
--- close some filetypes with <q>
+-- Filetype specific keymaps
 autocmd("FileType", {
   group = augroup("close_with_q"),
   pattern = {
@@ -90,6 +90,7 @@ autocmd("FileType", {
     vim.keymap.set("n", "<C-j>", "<C-w><C-j>", opts("Autocmd move to below window"))
     vim.keymap.set("n", "<C-k>", "<C-w><C-k>", opts("Autocmd move to above window"))
     vim.keymap.set("n", "<C-l>", "<C-w><C-l>", opts("Autocmd move to right window"))
+    vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Autocmd yank into clipboard register" })
   end,
 })
 
